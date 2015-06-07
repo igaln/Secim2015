@@ -7,12 +7,27 @@
 
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
+
+
+#container {
+  position: relative;
+}
+
+.item {
+   margin: 10px;
+   width: 300px; 
+}
     
-    #content a:link {color:#333333; font-weight: bold; font-family: "Verdana"; font-size: 30px; margin-bottom: 50px;}      /* unvisited link */
+    #content a:link {color:#333333; font-weight: bold; font-family: "Verdana"; font-size: 30px;}      /* unvisited link */
 		#content a:visited {color:#00FF00;}  /* visited link */
 		#content a:hover {color:#FF00FF;}  /* mouse over link */
 		#content a:active {color:#0000FF;}  /* selected link */
-		 #content {margin-bottom: 50px;}
+		
+		.image {
+			max-width: 300px;
+		
+		}
+
 		
 		#sep {width:100%;height: 30px;background-color: black; color: #FFF;}
 		#sep a:link {color:#fff;  font-family: "Verdana"; font-size: 25px; margin-left: 20px;} 

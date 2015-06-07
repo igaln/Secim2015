@@ -117,18 +117,9 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-app.get('/', routes.index);
-app.get('/vines', vines.index);
-app.get('/images', images.index);
-app.get('/youtube', youtube.index);
-
-app.get('/users', user.list);
-app.get('/map', map.view);
+app.get('/', images.index);
 
 app.get('/map', map.view);
-app.get('/factchecker',fact.index);
-
-app.get ( '/data/:name' , fact.data);
 
 
 app.get('/account', ensureAuthenticated, function(req, res){
@@ -136,27 +127,6 @@ app.get('/account', ensureAuthenticated, function(req, res){
   res.render('accessdenied', { user: req.user });
 });
 
-// app.get('/login', function(req, res){
-//   res.render('login', { user: req.user, message: req.flash('error') });
-// });
-
-// POST /login
-//   Use passport.authenticate() as route middleware to authenticate the
-//   request.  If authentication fails, the user will be redirected back to the
-//   login page.  Otherwise, the primary route function function will be called,
-//   which, in this example, will redirect the user to the home page.
-//
-//   curl -v -d "username=bob&password=secret" http://127.0.0.1:3000/login
-
-// app.post('/login', 
-//   passport.authenticate('local', { failureRedirect: '/login', failureFlash: true }),
-//   function(req, res) {
-//     res.redirect('/');
-//   });
-  
-// POST /login
-//   This is an alternative implementation that uses a custom callback to
-//   acheive the same functionality.
 
 app.post('/login', function(req, res, next) {
   passport.authenticate('local', function(err, user, info) {

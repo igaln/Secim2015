@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-  	<meta name="title" content="#GEZIPARKI ARCHIVES || #GEZIPARKI ARSIVLERI" />
+  	<meta name="title" content="#SECIM2015 ARCHIVES || #SECIM2015 ARSIVLERI" />
 	<meta name="description" content="Live stream news of #Geziparki Uprising with images, videos, vines and links shared by the people for the people." />
 	<meta property="og:title" content="#GEZIPARKI ARCHIVES Archives || #GEZIPARKI ARSIVLERI" />
     <meta property="og:type" content="website" />
@@ -16,39 +16,29 @@
     <title>#GEZIPARKI ARCHIVES || #GEZIPARKI ARSIVLERI</title>
     <link rel='stylesheet' href='/stylesheets/gezi.css' />
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.0/masonry.pkgd.min.js"></script>
     <style>
    
     </style>
     <script>
-  	$(document).ready(function() {
-    if (window.location.hash) { 
-        //bind to scroll function
-        $(document).scroll( function() {
-            var hash = window.location.hash
-            var hashName = hash.substring(1, hash.length);
-            var element;
 
-            //if element has this id then scroll to it
-            if ($(hash).length != 0) {
-                element = $(hash);
-            }
-            //catch cases of links that use anchor name
-            else if ($('a[name="' + hashName + '"]').length != 0)
-            {
-                //just use the first one in case there are multiples
-                element = $('a[name="' + hashName + '"]:first');
-            }
 
-            //if we have a target then go to it
-            if (element != undefined) {
-                window.scrollTo(0, element.position().top);
-            }
-            //unbind the scroll event
-            $(document).unbind("scroll");
-        });
-    }
-
+$(window).load(function(){
+  var $container = $('#container').masonry();
+  // layout Masonry again after all images have loaded
+  $container.imagesLoaded( function() {
+    $container.masonry();
+  });
 });
+//   	$(document).ready(function() {
+
+//       var container = document.querySelector('#container');
+//       var msnry = new Masonry( container, {
+//         // options...
+//         itemSelector: '.item',
+//         columnWidth: 200
+//       });
+// });
   	</script>
   </head>
   <body>
@@ -62,50 +52,21 @@
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 
-    <p style="margin-left:20px; width:900px;">THIS IS AN ONGOING ARCHIVE OF IMAGES, VIDEOS, VINES and URLS BEING SHARED FROM TURKEY, THE WEBSITE AIMS TO DOCUMENT ALL POLICE BRUTALITY ENFORCED BY THE ERDOGAN ADMINISTRATION AGAINST PEACEFUL PROTESTERS IN TURKEY.
-     </p>
-
-     <div id="menu"><a href="/">FEED</a> &#8195;&#9830; &#8195;<a href="/map">MAP</a> &#8195;&#9830; &#8195;<a href="/images">IMAGES</a>  &#8195;&#9830; &#8195;<a href="/vines">VINES</a>  &#8195;&#9830; &#8195;<a href="/youtube">YOUTUBE</a></div>
    
-   <div id="social">
- <div class="fb-like" data-href="http://www.geziparki.me" data-send="true" data-layout="button_count" data-width="200" data-show-faces="true" data-font="verdana" data-action="recommend"></div>
-  
-  <a href="https://twitter.com/share" class="twitter-share-button" data-text="This is a live feed of images, videos and vines from protests in Turkey. Please share." data-hashtags="direngeziparki,geziparki">Tweet</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-	</div>
+    <div id="sep"> <h2><a href="/?begin=0">REFRESH</a> <a href="/?begin={{start}}"> NEXT</a></h2></div>
 
-    <div id="sep"> <h2><a href="/{{type}}?begin=0">REFRESH</a> <a href="/{{type}}?begin={{start}}"> NEXT</a></h2></div>
-
-    <ul>
+    <div  id="container" class="js-masonry" data-masonry-options='{ "itemSelector": ".item" }'  >
 	  {{#tweetdata}}
-	  <li>
-	  		
-	  		<div id="content">
+	  		<div class="item">
 		  		{{#isImage}}
-					 <img src="{{url}}" />
+					 <img src="{{url}}" class="image"/>
 				{{/isImage}}
-				{{#isVine}}
-				<iframe class="vine-embed" src="{{url}}/embed/postcard" width="480" height="480" frameborder="0"></iframe><script async src="//platform.vine.co/static/scripts/embed.js" charset="utf-8"></script>
-					
-				{{/isVine}}
-				{{#isTube}}
-				<iframe width="420" height="315" src="{{url}}" frameborder="0" allowfullscreen></iframe>
-				{{/isTube}}
-				{{^isImage}}
-				  {{^isVine}}
-				  	{{^isTube}}
-				 	  <a href="{{url}}">{{text}}</a>
-				 	 {{/isTube}}
-					{{/isVine}}
-				{{/isImage}}
-				
 	  		</div>
-	  </li>
 	  {{/tweetdata}}
-	</ul>
-	 <div id="sep"><h2><a href="/{{type}}?begin={{start}}"> NEXT  </a></h2></div>
+  </div>
+<!-- 	 <div id="sep"><h2><a href="/?begin={{start}}"> NEXT  </a></h2></div> -->
 	
-	<p>contact me on <a href="http://twitter.com/igaln">twitter</a> if you have any suggestions/issues</p>
+	<!-- <p>contact me on <a href="http://twitter.com/igaln">twitter</a> if you have any suggestions/issues</p> -->
 	<script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
