@@ -17,12 +17,11 @@ exports.index = function(req, res){
 	 	start = parseInt(req.query.begin);
 	 }
 
-	 var end = start + 30;
+	 var end = start + 100;
 
 	console.log(start + " " + end);
 
 	var tweetdata  = [];
-
 
 	 var Db = require('mongodb').Db
   	, Connection = require('mongodb').Connection
@@ -30,9 +29,8 @@ exports.index = function(req, res){
   	, format = require('util').format;
 
   //166.78.181.167
-	 var client = new Db('gezi', new Server("166.78.181.167", 27017, {}), {w: 1});
+	 var client = new Db('secim2015', new Server("localhost", 27017, {}), {w: 1});
        
-
     	client.open(function(err, p_client) {
       		
       		var fields = {
@@ -42,7 +40,7 @@ exports.index = function(req, res){
 			};
 			var query = {"entities.urls.expanded_url":/.*.jpg.*/};
 			options = {"skip" : start, "limit" : end};
-      		client.collection("tweets", function(err,collection) {
+      		client.collection("mentions", function(err,collection) {
       			collection.find(query,fields,options ).sort({_id:-1}).toArray(function(err, results){
     					//console.log("results " + results.length);
     					
